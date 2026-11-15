@@ -57,7 +57,13 @@ header.scrolled{border-color:var(--line)}
 .hero .center{isolation:isolate}
 .f1{left:3%;top:10%}.f2{right:4%;top:6%;animation-delay:-2s}.f3{left:7%;bottom:22%;animation-delay:-4s;width:clamp(110px,13vw,190px)}.f4{right:6%;bottom:20%;animation-delay:-1s}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
-.wave{position:absolute;left:0;right:0;bottom:-1px;line-height:0;z-index:0}
+.wave{position:absolute;left:0;right:0;bottom:-1px;line-height:0;z-index:2;pointer-events:none}
+.lighthouse{position:absolute;z-index:1;left:4%;bottom:40px;width:clamp(110px,11vw,170px)}
+.lighthouse img{position:relative;z-index:1;width:100%}
+.beam{position:absolute;z-index:0;left:50%;top:27%;width:1100px;height:420px;transform-origin:0 50%;transform:translateY(-50%) rotate(-14deg);
+  background:linear-gradient(90deg,rgba(247,194,61,.55),rgba(247,194,61,.18) 45%,rgba(247,194,61,0) 85%);
+  clip-path:polygon(0 47%,100% 0,100% 100%,0 53%);animation:sweep 9s ease-in-out infinite;pointer-events:none}
+@keyframes sweep{0%,100%{transform:translateY(-50%) rotate(-16deg)}50%{transform:translateY(-50%) rotate(-8deg)}}
 .wave svg{width:100%;height:150px}
 
 /* TICKER */
@@ -230,7 +236,9 @@ footer a:hover{color:var(--sun)}
   .facts{position:static}
   details ol{columns:1}
   .float{opacity:.35}
-  .f3,.f4{display:none}
+  .f4{display:none}
+  .lighthouse{width:90px;left:2%;bottom:60px}
+  .beam{width:520px;height:240px}
   section{padding:84px 0}
   .about-txt{padding:40px 30px}
 }
@@ -261,7 +269,7 @@ footer a:hover{color:var(--sun)}
 <section class="hero">
   <div class="float f1"><img src="img/highfive.png" alt=""></div>
   <div class="float f2"><img src="img/kumple.png" alt=""></div>
-  <div class="float f3"><img src="img/pozytywnie.png" alt=""></div>
+  <div class="lighthouse" aria-hidden="true"><div class="beam"></div><img src="img/latarnia.svg" alt=""></div>
   <div class="float f4"><img src="img/uczen.png" alt=""></div>
   <div class="wrap center">
     <div class="word">RESQL</div>
