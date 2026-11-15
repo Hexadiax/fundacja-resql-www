@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fundacja RESQL – bezpieczne i przyjazne szkoły</title>
+<meta name="description" content="Fundacja RESQL przeciwdziała przemocy rówieśniczej i wykluczeniu w szkołach. Wspieramy uczniów, nauczycieli, rodziców i szkoły.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#00497F; --navy-d:#00315A; --turq:#26B9D1; --turq-l:#DDF3F7;
+  --sun:#F7C23D; --paper:#F5F8FA; --ink:#12283A; --muted:#5A6B7A; --line:#D7E2EA;
+  --r:28px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Fira Sans",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.ill{mix-blend-mode:multiply}
+
+/* NAV */
+header{position:sticky;top:0;z-index:50;background:rgba(245,248,250,.86);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.nav .brand img{height:40px;width:auto}
+.nav ul{display:flex;gap:30px;list-style:none;font-size:15px;font-weight:500}
+.nav ul a{text-decoration:none;color:var(--navy)}
+.nav ul a:hover{color:var(--turq)}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 22px;border-radius:999px;transition:transform .2s,background .2s;border:0;cursor:pointer}
+.pill:hover{background:var(--turq);transform:translateY(-2px)}
+.pill.sun{background:var(--sun);color:var(--navy-d)}
+.pill.sun:hover{background:#fff}
+.pill.ghost{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 2px var(--navy)}
+.pill.ghost:hover{background:var(--navy);color:#fff}
+.burger{display:none;background:none;border:0;font-size:26px;color:var(--navy);cursor:pointer}
+
+/* HERO */
+.hero{position:relative;min-height:calc(100vh - 76px);display:flex;align-items:center;overflow:hidden;padding:60px 0 150px}
+.hero .center{position:relative;z-index:2;text-align:center;margin:0 auto;max-width:760px}
+.mark{width:clamp(80px,10vw,120px);margin:0 auto 18px}
+.word{font-weight:900;color:var(--navy);font-size:clamp(76px,15vw,200px);line-height:.86;letter-spacing:-.02em}
+.word2{font-weight:500;color:var(--turq);font-size:clamp(30px,5.6vw,74px);letter-spacing:.32em;line-height:1.1;margin:6px 0 30px;padding-left:.32em}
+.hero p.lead{font-size:clamp(17px,1.7vw,20px);color:var(--muted);max-width:520px;margin:0 auto 30px}
+.hero p.lead strong{color:var(--navy)}
+.hero .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.float{position:absolute;z-index:1;width:clamp(120px,15vw,220px);animation:bob 7s ease-in-out infinite}
+.float img{mix-blend-mode:multiply;position:relative}
+.float::before{content:"";position:absolute;z-index:-1;border-radius:50%;width:78%;aspect-ratio:1;left:11%;top:14%}
+.f1::before{background:var(--sun)}
+.f2::before{background:var(--turq-l);width:70%;left:20%;top:30%}
+.f3::before{background:var(--turq-l);width:85%;left:5%;top:8%}
+.f4::before{background:var(--sun);width:62%;left:22%;top:6%;opacity:.9}
+.hero .center{isolation:isolate}
+.f1{left:3%;top:10%}.f2{right:4%;top:6%;animation-delay:-2s}.f3{left:7%;bottom:22%;animation-delay:-4s;width:clamp(110px,13vw,190px)}.f4{right:6%;bottom:20%;animation-delay:-1s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
+.wave{position:absolute;left:0;right:0;bottom:-1px;line-height:0;z-index:0}
+.wave svg{width:100%;height:150px}
+
+/* TICKER */
+.ticker{background:var(--turq);color:var(--navy-d);overflow:hidden;white-space:nowrap;padding:16px 0;font-weight:800;font-size:clamp(17px,2vw,24px);text-transform:uppercase;letter-spacing:.02em}
+.ticker .track{display:inline-flex;animation:tick 38s linear infinite}
+.ticker span{padding:0 28px}
+.ticker span::after{content:"✦";margin-left:56px;color:#fff}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:120px 0}
+.eyebrow{font-weight:800;text-transform:uppercase;color:var(--turq);letter-spacing:.14em;font-size:14px;margin-bottom:14px}
+h2{font-weight:900;color:var(--navy);text-transform:uppercase;font-size:clamp(40px,6vw,78px);line-height:.95;letter-spacing:-.01em;margin-bottom:28px}
+h3{color:var(--navy);font-weight:800;font-size:22px;line-height:1.2;margin-bottom:10px}
+.lede{font-size:clamp(19px,2vw,24px);line-height:1.5;color:var(--ink);max-width:760px}
+.lede em{font-style:normal;color:var(--navy);font-weight:600}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:0;border-radius:var(--r);overflow:hidden;margin-top:56px;min-height:560px}
+.about-img{background:#fff;display:flex;align-items:center;justify-content:center;padding:40px}
+.about-img img{max-height:480px;mix-blend-mode:multiply}
+.about-txt{background:var(--navy);color:#fff;padding:56px 52px;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.about-txt h3{color:var(--sun);font-size:28px}
+.about-txt p{color:#D8E8F3}
+.about-txt .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.about-txt .badges span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.1);color:#fff}
+.about-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+.about-row .card{background:#fff;border-radius:var(--r);padding:28px;display:flex;gap:18px;align-items:center}
+.about-row .card img{width:110px;flex:none;mix-blend-mode:multiply}
+
+/* WHAT WE DO */
+.do{background:#fff}
+.do-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:56px}
+.do-card{background:var(--paper);border-radius:var(--r);padding:28px 26px 30px;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.do-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px -20px rgba(0,73,127,.35)}
+.do-card .pic{height:190px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:22px}
+.do-card .pic img{max-height:190px;mix-blend-mode:multiply}
+.do-card h3{text-transform:uppercase;font-size:20px}
+.do-card ul{list-style:none;margin-top:8px}
+.do-card li{padding:7px 0;border-top:1px solid var(--line);font-size:15.5px;color:var(--muted)}
+.do-card li:first-child{border-top:0}
+
+/* IMPACT */
+.impact{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.impact h2{color:#fff}
+.impact .eyebrow{color:var(--sun)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+.stat{background:rgba(255,255,255,.07);border-radius:var(--r);padding:32px}
+.stat .n{font-size:clamp(46px,5vw,68px);font-weight:900;line-height:1;color:var(--turq)}
+.stat .vs{font-size:18px;font-weight:600;color:#fff;margin-top:6px}
+.stat .vs b{color:var(--sun)}
+.stat p{color:#C6DBEA;font-size:15px;margin-top:12px}
+.impact .note{margin-top:28px;font-size:14px;color:#9FBDD3;max-width:820px}
+.impact .deco{position:absolute;right:-40px;top:40px;width:300px;opacity:.12;filter:invert(1)}
+
+/* PROJECTS */
+.proj-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.proj-head p{max-width:440px;color:var(--muted)}
+.proj-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;margin-top:56px}
+.proj{background:#fff;border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s}
+.proj:hover{transform:rotate(-.6deg) translateY(-4px)}
+.proj:nth-child(even):hover{transform:rotate(.6deg) translateY(-4px)}
+.proj .vis{background:var(--turq-l);display:flex;align-items:center;justify-content:center;padding:26px;min-height:240px}
+.proj .vis img{max-height:220px;mix-blend-mode:multiply}
+.proj.navy .vis{background:#E3ECF4}
+.proj.sun .vis{background:#FDF1CF}
+.proj .body{padding:26px 28px 30px}
+.chip{display:inline-block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:5px 11px;border-radius:999px;background:var(--turq-l);color:var(--navy);margin-bottom:12px}
+.chip.on{background:var(--turq);color:#fff}
+.chip.plan{background:var(--sun);color:var(--navy-d)}
+.proj p{color:var(--muted);font-size:15.5px}
+.proj .meta{margin-top:14px;font-size:14px;color:var(--navy);font-weight:600}
+.s7{grid-column:span 7}.s5{grid-column:span 5}.s4{grid-column:span 4}.s6{grid-column:span 6}
+
+
+/* NEWS */
+.news{display:grid;grid-template-columns:1fr 1.4fr;background:#fff;border-radius:var(--r);overflow:hidden}
+.news-vis{background:#FDF1CF;display:flex;align-items:center;justify-content:center;padding:36px}
+.news-vis img{max-height:300px;mix-blend-mode:multiply}
+.news-body{padding:40px 44px}
+.news-body h3{font-size:28px;margin-bottom:14px}
+.news-body p{color:var(--muted);margin-bottom:12px}
+.pill.fb{margin-top:8px}
+.partners{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;justify-content:center;margin-top:34px;padding:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-weight:800;color:var(--navy);text-transform:uppercase;font-size:15px;letter-spacing:.04em}
+.partners .lab{color:var(--turq);font-size:12px;letter-spacing:.14em}
+.social{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-weight:600}
+@media (max-width:860px){.news{grid-template-columns:1fr}.news-body{padding:30px 26px}}
+
+/* TEAM */
+.team{background:#fff}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.person{background:var(--paper);border-radius:var(--r);padding:32px;display:flex;flex-direction:column}
+.avatar{width:150px;height:150px;border-radius:50%;background:#fff;overflow:hidden;margin-bottom:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--turq-l)}
+.avatar img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.avatar.photo img{mix-blend-mode:normal}
+.avatar.photo{box-shadow:0 0 0 6px var(--sun)}
+.avatar.mono{background:var(--navy);color:#fff;font-weight:900;font-size:48px}
+.person .role{color:var(--turq);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.1em;margin-bottom:12px}
+.person p{font-size:15.5px;color:var(--muted)}
+.team-foot{margin-top:28px;display:flex;gap:26px;align-items:center;background:var(--turq-l);border-radius:var(--r);padding:26px 32px}
+.team-foot img{width:150px;flex:none;mix-blend-mode:multiply}
+
+/* STATUTE */
+.statute-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:56px;margin-top:40px;align-items:start}
+.facts{background:var(--navy);color:#fff;border-radius:var(--r);padding:34px;position:sticky;top:100px}
+.facts img{width:180px;margin-bottom:22px}
+.facts dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:15px}
+.facts dt{color:#9FC6DE}
+.facts dd{font-weight:600}
+details{background:#fff;border-radius:20px;margin-bottom:12px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:22px 26px;font-weight:800;color:var(--navy);font-size:19px;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:28px;font-weight:400;color:var(--turq);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details .in{padding:0 26px 24px;color:var(--muted);font-size:15.5px}
+details ol{padding-left:22px;columns:2;column-gap:34px}
+details li{margin-bottom:7px;break-inside:avoid}
+details p+p{margin-top:10px}
+
+/* SUPPORT */
+.support{background:var(--turq);position:relative;overflow:hidden}
+.support h2{color:var(--navy-d)}
+.support .eyebrow{color:#fff}
+.sup-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+.sup-list{display:grid;gap:14px;margin:30px 0}
+.sup-list div{background:rgba(255,255,255,.9);border-radius:18px;padding:18px 22px;display:flex;gap:16px;align-items:flex-start}
+.sup-list b{color:var(--navy);display:block;font-size:17px}
+.sup-list span{color:var(--muted);font-size:15px}
+.sup-list .num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+.sup-img{background:#fff;border-radius:40% 60% 55% 45% / 50% 45% 55% 50%;padding:40px}
+.sup-img img{mix-blend-mode:multiply}
+
+/* PARENTS */
+.parents-box{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;background:#fff;border-radius:var(--r);padding:44px 48px}
+.parents-box img{width:200px;mix-blend-mode:multiply}
+.parents-box h3{font-size:28px}
+.parents-box ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.parents-box li{background:var(--turq-l);color:var(--navy);font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px}
+
+/* FOOTER */
+footer{background:var(--navy-d);color:#fff;padding:90px 0 40px;position:relative;overflow:hidden}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+footer h4{color:var(--turq);text-transform:uppercase;font-size:13px;letter-spacing:.14em;margin-bottom:14px}
+footer p,footer li{color:#C6DBEA;font-size:15px;list-style:none}
+footer a{color:#fff;text-decoration:none}
+footer a:hover{color:var(--sun)}
+.big-mail{font-size:clamp(26px,3.4vw,44px);font-weight:800;display:inline-block;margin:6px 0 20px;border-bottom:3px solid var(--sun)}
+.foot-word{font-weight:900;font-size:clamp(80px,19vw,280px);line-height:.8;color:rgba(255,255,255,.06);margin-top:60px;letter-spacing:-.02em;white-space:nowrap}
+.foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid rgba(255,255,255,.12);padding-top:22px;margin-top:-20px;font-size:13px;color:#8FB0C8}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media (max-width:1050px){
+  .do-grid{grid-template-columns:repeat(2,1fr)}
+  .s7,.s5,.s4,.s6{grid-column:span 12}
+  .proj-grid{grid-template-columns:repeat(2,1fr)}
+  .proj-grid>*{grid-column:auto!important}
+}
+@media (max-width:860px){
+  .nav ul,.nav .pill{display:none}
+  .burger{display:block}
+  .nav.open ul{display:flex;flex-direction:column;position:absolute;top:76px;left:0;right:0;background:var(--paper);padding:20px 28px 28px;gap:18px;border-bottom:1px solid var(--line)}
+  .about-grid,.statute-grid,.sup-grid{grid-template-columns:1fr}
+  .about-row,.stats,.team-grid,.foot-top{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr}
+  .parents-box{grid-template-columns:1fr;text-align:left}
+  .facts{position:static}
+  details ol{columns:1}
+  .float{opacity:.35}
+  .f3,.f4{display:none}
+  section{padding:84px 0}
+  .about-txt{padding:40px 30px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav" id="nav">
+    <a class="brand" href="#start" aria-label="Fundacja RESQL – strona główna"><img src="img/logo-poziom.svg" alt="Fundacja RESQL"></a>
+    <ul>
+      <li><a href="#o-fundacji">O fundacji</a></li>
+      <li><a href="#co-robimy">Co robimy</a></li>
+      <li><a href="#projekty">Projekty</a></li>
+      <li><a href="#zarzad">Zarząd</a></li>
+      <li><a href="#statut">Statut</a></li>
+      <li><a href="#aktualnosci">Aktualności</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a class="pill" href="#wesprzyj">Wesprzyj szkołę</a>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main id="start">
+<!-- HERO -->
+<section class="hero">
+  <div class="float f1"><img src="img/highfive.png" alt=""></div>
+  <div class="float f2"><img src="img/kumple.png" alt=""></div>
+  <div class="float f3"><img src="img/pozytywnie.png" alt=""></div>
+  <div class="float f4"><img src="img/uczen.png" alt=""></div>
+  <div class="wrap center">
+    <div class="word">RESQL</div>
+    <div class="word2">FUNDACJA</div>
+    <p class="lead"><strong>Kierunek: bezpieczne i przyjazne szkoły.</strong><br>Przeciwdziałamy przemocy rówieśniczej i wykluczeniu. Dajemy dorosłym w szkole wiedzę i narzędzia, a uczniom – bezpieczny sposób, by poprosić o pomoc.</p>
+    <div class="ctas">
+      <a class="pill" href="#o-fundacji">Poznaj fundację</a>
+      <a class="pill ghost" href="#wesprzyj">Jak możesz pomóc</a>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0,90 C240,10 420,140 720,80 C1000,24 1180,120 1440,60 L1440,150 L0,150 Z" fill="#26B9D1" opacity=".25"/><path d="M0,120 C300,60 520,150 820,105 C1080,66 1260,130 1440,96 L1440,150 L0,150 Z" fill="#26B9D1"/></svg>
+  </div>
+</section>
+
+<div class="ticker" aria-label="RESQL w liczbach">
+  <div class="track">
+    <span>740+ szkół z systemem RESQL</span><span>250 000+ uczniów</span><span>2 100 nauczycieli interwentów</span><span>12 834 uczniów w ewaluacji</span><span>Badania z Uniwersytetem SWPS</span>
+    <span>740+ szkół z systemem RESQL</span><span>250 000+ uczniów</span><span>2 100 nauczycieli interwentów</span><span>12 834 uczniów w ewaluacji</span><span>Badania z Uniwersytetem SWPS</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="o-fundacji">
+  <div class="wrap">
+    <div class="eyebrow rv">O fundacji</div>
+    <h2 class="rv">Kim jesteśmy</h2>
+    <p class="lede rv">Fundacja RESQL powstała we wrześniu 2025 roku, aby <em>żadna szkoła nie musiała wybierać między bezpieczeństwem uczniów a możliwościami finansowymi</em>. Działamy na rzecz dzieci i młodzieży, przede wszystkim przeciw przemocy rówieśniczej i wykluczeniu w szkołach i placówkach oświatowych. <em>Łączymy szkoły z partnerami, którzy chcą realnie pomagać.</em></p>
+
+    <div class="about-grid rv">
+      <div class="about-img"><img src="img/nauczyciele-obroncy.png" alt="Ilustracja: nauczyciele z tarczą chronią uczniów"></div>
+      <div class="about-txt">
+        <h3>Wyrastamy z doświadczenia RESQL</h3>
+        <p>Fundatorem jest spółka RESQL, która od 2021 roku rozwija system zapobiegania przemocy rówieśniczej. System łączy anonimowe zgłaszanie przez uczniów z panelem dla przeszkolonych nauczycieli interwentów, szkoleniami i materiałami dla szkół.</p>
+        <p>Fundacja pozwala dotrzeć dalej: do szkół, których nie stać na wdrożenie, do nauczycieli, którzy potrzebują wsparcia, i do rodziców, którzy zostają z problemem sami. Łączy szkoły z firmami, samorządami i instytucjami, które chcą realnie pomagać.</p>
+        <div class="badges"><span>Uniwersytet SWPS</span><span>RESQL – Fundator</span><span>Działamy w całej Polsce</span></div>
+      </div>
+    </div>
+
+    <div class="about-row">
+      <div class="card rv"><img src="img/klimat.png" alt=""><div><h3>Uczniowie</h3><p>Bezpieczny kanał pomocy i lepszy klimat w klasie.</p></div></div>
+      <div class="card rv"><img src="img/nauczycielka-obrona.png" alt=""><div><h3>Dorośli w szkole</h3><p>Wiedza, narzędzia i wsparcie w reagowaniu na przemoc.</p></div></div>
+      <div class="card rv"><img src="img/rodzina.png" alt=""><div><h3>Rodziny</h3><p>Rozmowa, konsultacje i kierunek dalszego działania.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="do" id="co-robimy">
+  <div class="wrap">
+    <div class="eyebrow rv">Co robimy</div>
+    <h2 class="rv">Nasze obszary</h2>
+    <div class="do-grid">
+      <div class="do-card rv">
+        <div class="pic"><img src="img/team.png" alt=""></div>
+        <h3>Szkoły</h3>
+        <ul><li>Wdrożenia systemu RESQL</li><li>Programy profilaktyczne</li><li>Pozyskiwanie środków na wdrożenia</li><li>Mediacje i rozwiązywanie konfliktów</li></ul>
+      </div>
+      <div class="do-card rv">
+        <div class="pic"><img src="img/nauczyciel.png" alt=""></div>
+        <h3>Nauczyciele</h3>
+        <ul><li>Szkolenia rad pedagogicznych</li><li>Warsztaty dla interwentów</li><li>Scenariusze lekcji i karty pracy</li><li>Przeciwdziałanie wypaleniu</li></ul>
+      </div>
+      <div class="do-card rv">
+        <div class="pic"><img src="img/rozmowa.png" alt=""></div>
+        <h3>Rodzice</h3>
+        <ul><li>Bezpłatne konsultacje psychologiczne</li><li>Przygotowanie do rozmowy ze szkołą</li><li>Wsparcie dziecka w domu</li><li>Psychoedukacja</li></ul>
+      </div>
+      <div class="do-card rv">
+        <div class="pic"><img src="img/naukowcy.png" alt=""></div>
+        <h3>Badania</h3>
+        <ul><li>Badania przemocy rówieśniczej</li><li>Ewaluacja działań w szkołach</li><li>Raporty i publikacje</li><li>Konferencje i debaty eksperckie</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact">
+  <img class="deco" src="img/obronca.png" alt="">
+  <div class="wrap">
+    <div class="eyebrow rv">Dlaczego to działa</div>
+    <h2 class="rv">Efekty, które<br>da się zmierzyć</h2>
+    <div class="stats">
+      <div class="stat rv"><div class="n">11,7%</div><div class="vs">vs <b>20,6%</b></div><p>uczniów doświadczających dręczenia w ostatnich 4 tygodniach – w szkołach z pełnym wdrożeniem RESQL i bez niego.</p></div>
+      <div class="stat rv"><div class="n">61,1%</div><div class="vs">vs <b>20,9%</b></div><p>uczniów zauważa poprawę bezpieczeństwa – przy wysokim i niskim poziomie wdrożenia.</p></div>
+      <div class="stat rv"><div class="n">58,1%</div><div class="vs">vs <b>17,2%</b></div><p>uczniów zauważa lepszą komunikację z nauczycielami – przy wysokim i niskim poziomie wdrożenia.</p></div>
+    </div>
+    <p class="note rv">Ewaluacja systemu RESQL objęła 12 834 uczniów z 88 szkół ponadpodstawowych (program „Przerwij krąg przemocy w swojej szkole”, Uniwersytet SWPS, Fundacja UNIQA, zespół RESQL).</p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projekty">
+  <div class="wrap">
+    <div class="proj-head">
+      <div><div class="eyebrow rv">Projekty</div><h2 class="rv" style="margin:0">Co realizujemy</h2></div>
+      <p class="rv">Każdy projekt łączy wiedzę naukową z praktyką szkolną. Pokazujemy, co już działa, i dokładamy kolejne elementy.</p>
+    </div>
+    <div class="proj-grid">
+      <article class="proj s7 rv">
+        <div class="vis"><img src="img/nauczycielka.png" alt=""></div>
+        <div class="body"><span class="chip plan">2026/2027</span>
+          <h3>Wsparcie nauczycieli, specjalistów i dyrekcji w przeciwdziałaniu przemocy rówieśniczej</h3>
+          <p>System RESQL dla 20 szkół, szkolenia rad pedagogicznych i nauczycieli interwentów, scenariusze lekcji, konsultacje oraz stałe wsparcie merytoryczne i techniczne. Odbiorcami są przede wszystkim dorośli, którzy odpowiadają za bezpieczeństwo uczniów.</p>
+          <div class="meta">20 szkół · ok. 4 600 uczestników</div>
+        </div>
+      </article>
+      <article class="proj s5 navy rv">
+        <div class="vis"><img src="img/obrona-nastolatki.png" alt=""></div>
+        <div class="body"><span class="chip">Badanie · 2026</span>
+          <h3>Długofalowe skutki bullyingu wśród osób neuroatypowych</h3>
+          <p>Badanie mixed methods (ok. 30 wywiadów pogłębionych i ankieta) o tym, jak przemoc rówieśnicza wpływa na dorosłe życie – oraz co chroni przed jej skutkami.</p>
+          <div class="meta">We współpracy z Fundacją JiM</div>
+        </div>
+      </article>
+      <article class="proj s4 sun rv">
+        <div class="vis"><img src="img/pomoc.png" alt=""></div>
+        <div class="body"><span class="chip on">Trwa</span>
+          <h3>Bezpłatne konsultacje dla rodziców</h3>
+          <p>60-minutowe spotkania online z psycholożką i psychoterapeutką dla rodziców dzieci doświadczających przemocy rówieśniczej.</p>
+          <div class="meta"><a href="#rodzice">Szczegóły ↓</a></div>
+        </div>
+      </article>
+      <article class="proj s4 rv">
+        <div class="vis"><img src="img/scenariusze.png" alt=""></div>
+        <div class="body"><span class="chip">Program</span>
+          <h3>„Przerwij krąg przemocy w swojej szkole”</h3>
+          <p>Konkurs, w którym szkoły zdobywają bezpłatne wdrożenie RESQL. Kolejne szkoły z listy zgłoszeń mogą dołączyć dzięki partnerom.</p>
+          <div class="meta">Z Fundacją UNIQA i Uniwersytetem SWPS</div>
+        </div>
+      </article>
+      <article class="proj s4 navy rv">
+        <div class="vis"><img src="img/swiadek.png" alt=""></div>
+        <div class="body"><span class="chip">Raport</span>
+          <h3>„Bullying – perspektywa osób neuroatypowych”</h3>
+          <p>Uczniowie neuroatypowi doświadczają przemocy wielokrotnie częściej niż ich rówieśnicy. Ta wiedza zmienia sposób myślenia o bezpieczeństwie w szkole.</p>
+          <div class="meta">Dane od ponad 12,8 tys. uczniów</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- NEWS -->
+<section id="aktualnosci" style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow rv">Aktualności</div>
+    <article class="news rv">
+      <div class="news-vis"><img src="img/relacje.png" alt="Ilustracja: uczniowie i nauczyciele razem"></div>
+      <div class="news-body">
+        <span class="chip on">21 września 2026</span>
+        <h3>RESQL w 8 nowych szkołach dzięki Konsorcjum Filantropijnemu</h3>
+        <p>Dzięki wsparciu Konsorcjum Filantropijnego system RESQL działa w ośmiu kolejnych szkołach. Wzięliśmy też udział w pierwszym Philanthropic Consortium Global Summit w Pałacu Rzeczypospolitej w Warszawie. Ważną częścią spotkania był panel „Beyond hate” o hejcie, bullyingu i cyberprzemocy, czyli o zjawiskach, z którymi pracujemy na co dzień.</p>
+        <p>Zapraszamy kolejne firmy i organizacje: wsparcie bezpieczeństwa uczniów może być częścią strategii CSR i ESG.</p>
+        <a class="pill fb" href="https://www.facebook.com/p/Fundacja-RESQL-61573486746170/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg> Więcej na naszym Facebooku</a>
+      </div>
+    </article>
+    <div class="partners rv">
+      <span class="lab">Współpracujemy z</span>
+      <span>Konsorcjum Filantropijne</span><span>Fundacja UNIQA</span><span>Fundacja JiM</span><span>Uniwersytet SWPS</span>
+    </div>
+  </div>
+</section>
+
+<!-- PARENTS -->
+<section id="rodzice" style="padding-top:0">
+  <div class="wrap">
+    <div class="parents-box rv">
+      <img src="img/wsparcie.png" alt="Ilustracja: wsparcie">
+      <div>
+        <div class="eyebrow">Dla rodziców i opiekunów</div>
+        <h3>Nie musicie zostawać z tym sami</h3>
+        <p style="color:var(--muted)">Kiedy dziecko doświadcza przemocy, napięcie dotyka całej rodziny. Podczas bezpłatnej konsultacji można spokojnie uporządkować sytuację i zaplanować kolejne kroki. Nikt nie ocenia rodziców.</p>
+        <ul><li>uporządkowanie sytuacji</li><li>rozmowa ze szkołą</li><li>wsparcie dziecka w domu</li><li>mechanizmy bullyingu</li></ul>
+      </div>
+      <a class="pill" href="#kontakt">Zapisz się</a>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="zarzad">
+  <div class="wrap">
+    <div class="eyebrow rv">Zarząd</div>
+    <h2 class="rv">Ludzie fundacji</h2>
+    <div class="team-grid">
+      <div class="person rv">
+        <div class="avatar photo"><img src="img/foto-malinowska.jpg" alt="Karolina Malinowska"></div>
+        <div class="role">Prezeska Zarządu</div>
+        <h3>Karolina Malinowska</h3>
+        <p>Psycholożka, badaczka, trenerka umiejętności psychospołecznych; pracuje też w nurcie poznawczo-behawioralnym. Współtwórczyni systemu RESQL. W Instytucie Badań Edukacyjnych – PIB prowadzi badania i projekty wdrożeniowe, kieruje projektem „Kariera bez barier”. Związana z Uniwersytetem SWPS.</p>
+      </div>
+      <div class="person rv">
+        <div class="avatar photo"><img src="img/foto-kaczan.jpg" alt="Radosław Kaczan"></div>
+        <div class="role">Członek Zarządu</div>
+        <h3>dr Radosław Kaczan</h3>
+        <p>Psycholog, adiunkt na Wydziale Psychologii Uniwersytetu SWPS, współzałożyciel RESQL. Doktorat w Instytucie Psychologii PAN. Kierował projektem wdrożeniowym, z którego powstały program i aplikacja RESQL. Współautor systemu diagnostycznego KAPP.</p>
+      </div>
+      <div class="person rv">
+        <div class="avatar photo"><img src="img/foto-rycielski.jpg" alt="Piotr Rycielski"></div>
+        <div class="role">Członek Zarządu</div>
+        <h3>dr Piotr Rycielski</h3>
+        <p>Doktor psychologii, współtwórca systemu RESQL, pracownik Wydziału Psychologii Uniwersytetu SWPS i ekspert ds. narzędzi diagnostycznych w IBE – PIB. Bada przemoc rówieśniczą i szkolne uwarunkowania efektywności kształcenia.</p>
+      </div>
+    </div>
+    <div class="team-foot rv">
+      <img src="img/piateczka.png" alt="">
+      <p>Z zarządem współpracuje zespół RESQL: trenerzy z wykształceniem psychologicznym lub pedagogicznym prowadzący szkolenia we wdrożeniach, zespół koordynacyjny i zespół merytoryczny.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATUTE -->
+<section id="statut">
+  <div class="wrap">
+    <div class="eyebrow rv">Statut i dane</div>
+    <h2 class="rv">Statut fundacji</h2>
+    <div class="statute-grid">
+      <aside class="facts rv">
+        <img src="img/logo-pion-white.svg" alt="Fundacja RESQL">
+        <dl>
+          <dt>Nazwa</dt><dd>Fundacja RESQL</dd>
+          <dt>KRS</dt><dd>0001224394</dd>
+          <dt>NIP</dt><dd>1133194096</dd>
+          <dt>REGON</dt><dd>544011436</dd>
+          <dt>Siedziba</dt><dd>ul. Chodakowska 19/31, 03-815 Warszawa</dd>
+          <dt>Fundator</dt><dd>RESQL sp. z o.o.</dd>
+          <dt>Statut</dt><dd>z dnia 12 grudnia 2025 r.</dd>
+          <dt>Nadzór</dt><dd>Minister ds. oświaty i wychowania</dd>
+        </dl>
+      </aside>
+      <div>
+        <details open class="rv">
+          <summary>Cele fundacji (§ 5)</summary>
+          <div class="in"><ol>
+            <li>Działanie na rzecz dzieci i młodzieży, w szczególności przeciwdziałanie przemocy rówieśniczej i wykluczeniu w szkołach</li>
+            <li>Ochrona i promocja zdrowia, w tym zdrowia psychicznego i dobrostanu</li>
+            <li>Działanie na rzecz oświaty i wspieranie nauczycieli oraz specjalistów</li>
+            <li>Promowanie edukacji włączającej i wspieranie uczniów ze specjalnymi potrzebami</li>
+            <li>Przeciwdziałanie wypaleniu zawodowemu nauczycieli</li>
+            <li>Wspieranie rozwoju rodziców w wychowaniu dziecka</li>
+            <li>Promowanie dialogu, empatii i współpracy uczniów, nauczycieli i rodziców</li>
+            <li>Wspieranie rozwoju, wychowania i kształcenia dzieci i młodzieży</li>
+            <li>Edukacja i działania profilaktyczne</li>
+            <li>Inicjowanie i wspieranie badań w pedagogice i psychologii edukacji</li>
+            <li>Wspieranie mediacji i rozwiązywania konfliktów w szkołach</li>
+            <li>Tworzenie bezpiecznej i przyjaznej atmosfery w szkołach</li>
+            <li>Wsparcie i edukacja podmiotów rynkowych</li>
+            <li>Wspieranie współpracy biznesu z NGO w projektach społecznych</li>
+            <li>Doskonalenie zawodowe kadry pedagogicznej</li>
+            <li>Promowanie nowoczesnych rozwiązań edukacyjnych</li>
+            <li>Tutoring, superwizja, mentoring, coaching i mediacja</li>
+            <li>Promocja zdrowego stylu życia</li>
+            <li>Upowszechnianie i ochrona praw dziecka</li>
+          </ol></div>
+        </details>
+        <details class="rv">
+          <summary>Jak realizujemy cele (§ 6)</summary>
+          <div class="in">
+            <p>Prowadzimy programy profilaktyczne i kampanie edukacyjne, udostępniamy narzędzia do monitorowania przemocy rówieśniczej i rozwiązania informatyczne. Organizujemy szkolenia, warsztaty, konsultacje i superwizje dla nauczycieli, pedagogów, psychologów i dyrektorów.</p>
+            <p>Wydajemy publikacje, raporty i poradniki, organizujemy konferencje i panele eksperckie. Prowadzimy i wspieramy badania naukowe, współpracujemy z samorządami, administracją, organizacjami pozarządowymi i szkołami w kraju i za granicą. Organizujemy pomoc w zakresie zdrowia psychicznego: konsultacje, warsztaty i grupy wsparcia.</p>
+          </div>
+        </details>
+        <details class="rv">
+          <summary>Organy fundacji</summary>
+          <div class="in">
+            <p><b>Zarząd</b> (1–3 osoby, powoływane przez Fundatora) prowadzi sprawy Fundacji i reprezentuje ją. Fundację reprezentuje dwóch członków Zarządu działających łącznie.</p>
+            <p><b>Rada Fundacji</b> – statut przewiduje Radę jako organ nadzoru, jednak nie została ona jeszcze powołana. Zgodnie z § 17 ust. 5 statutu do czasu jej powołania kompetencje Rady wykonuje Fundator – RESQL sp. z o.o.</p>
+          </div>
+        </details>
+        <details class="rv">
+          <summary>Majątek i finansowanie</summary>
+          <div class="in">
+            <p>Fundusz założycielski wynosi 7 000 zł. Dochody pochodzą m.in. z darowizn, grantów, dotacji, zbiórek i działalności gospodarczej, która służy wyłącznie realizacji celów statutowych. Cały dochód przeznaczamy na działalność statutową.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="support" id="wesprzyj">
+  <div class="wrap sup-grid">
+    <div>
+      <div class="eyebrow rv">Dla firm, samorządów i darczyńców</div>
+      <h2 class="rv">Wesprzyj<br>bezpieczną szkołę</h2>
+      <p class="lede rv" style="color:var(--navy-d)">Bezpieczeństwo dzieci to inwestycja, nie koszt. Możesz pomóc dziesiątkom szkół albo jednej – tej, do której chodzą dzieci Twoich pracowników.</p>
+      <div class="sup-list">
+        <div class="rv"><span class="num">1</span><p><b>Sfinansuj RESQL dla szkoły</b><span>Wdrożenie systemu wraz ze szkoleniami w wybranej placówce.</span></p></div>
+        <div class="rv"><span class="num">2</span><p><b>Wesprzyj szkolenia</b><span>Warsztaty dla nauczycieli i rodziców, konsultacje, materiały.</span></p></div>
+        <div class="rv"><span class="num">3</span><p><b>Obejmij patronat nad konkursem</b><span>„Przerwij krąg przemocy w swojej szkole” – gotowy punkt wejścia do współpracy.</span></p></div>
+        <div class="rv"><span class="num">4</span><p><b>Zostań partnerem badań</b><span>Wiedza, która zmienia praktykę szkół w całej Polsce.</span></p></div>
+      </div>
+      <a class="pill" href="#kontakt">Porozmawiajmy</a>
+    </div>
+    <div class="sup-img rv"><img src="img/negocjacje.png" alt="Ilustracja: współpraca"></div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <h4>Kontakt</h4>
+        <a class="big-mail" href="mailto:fundacja@resql.pl">fundacja@resql.pl</a>
+        <p>Napisz do nas w sprawie współpracy, wsparcia szkoły lub konsultacji dla rodziców.</p>
+        <a class="social" href="https://www.facebook.com/p/Fundacja-RESQL-61573486746170/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg> facebook.com/Fundacja RESQL</a>
+        <p style="margin-top:22px"><img src="img/logo-poziom-white.svg" alt="Fundacja RESQL" style="height:46px"></p>
+      </div>
+      <div>
+        <h4>Adres</h4>
+        <p>Fundacja RESQL<br>ul. Chodakowska 19/31<br>03-815 Warszawa</p>
+        <h4 style="margin-top:24px">Dane</h4>
+        <p>KRS 0001224394<br>NIP 1133194096<br>REGON 544011436</p>
+      </div>
+      <div>
+        <h4>Na stronie</h4>
+        <ul>
+          <li><a href="#o-fundacji">O fundacji</a></li>
+          <li><a href="#co-robimy">Co robimy</a></li>
+          <li><a href="#projekty">Projekty</a></li>
+          <li><a href="#zarzad">Zarząd</a></li>
+          <li><a href="#statut">Statut</a></li>
+          <li><a href="#aktualnosci">Aktualności</a></li>
+          <li><a href="https://resql.pl/">System RESQL ↗</a></li>
+          <li><a href="https://www.facebook.com/p/Fundacja-RESQL-61573486746170/" target="_blank" rel="noopener">Facebook ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-word" aria-hidden="true">RESQL</div>
+    <div class="foot-bot"><span>© 2026 Fundacja RESQL</span><span>Kierunek: bezpieczne i przyjazne szkoły.</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var h=document.querySelector('header');
+  addEventListener('scroll',function(){h.classList.toggle('scrolled',scrollY>10)},{passive:true});
+  document.querySelectorAll('.nav ul a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open')})});
+  if(!('IntersectionObserver' in window)){document.querySelectorAll('.rv').forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
